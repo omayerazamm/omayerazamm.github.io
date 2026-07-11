@@ -1,28 +1,28 @@
 /* =========================================================
    DESIGN TOKENS
    Edit these variables to re-theme the whole site in one place.
+   --accent is overridden live by script.js per active tab —
+   see the data-accent attribute on each .depth-btn in index.html.
    ========================================================= */
 :root {
-  /* ---- Color: light "drafting paper" palette ---- */
-  --bg: #faf9f6;
-  --bg-grid-line: rgba(44, 95, 124, 0.06);
-  --paper: #ffffff;
-  --ink: #1c2126;
-  --ink-soft: #566068;
-  --ink-faint: #8b939a;
-  --line: #dde2e5;
-  --line-strong: #b9c1c6;
-  --blue: #2c5f7c;      /* primary accent — blueprint blue   */
-  --blue-soft: #e8eff2; /* pale blue fill for chips/tags     */
-  --amber: #c17a35;     /* secondary accent — drafting pencil */
+  --bg: #121110;
+  --bg-panel: #1a1816;
+  --bg-raised: #211e1b;
+  --ink: #f3ede1;
+  --ink-soft: #b7ac99;
+  --ink-faint: #7d7466;
+  --line: rgba(243, 237, 225, 0.1);
+  --line-strong: rgba(243, 237, 225, 0.2);
 
-  /* ---- Type ---- */
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'IBM Plex Sans', sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+  --accent: #c1603a;       /* live-updated by JS per active tab */
+  --accent-soft: rgba(193, 96, 58, 0.14);
 
-  /* ---- Layout ---- */
-  --radius: 3px;
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --radius: 2px;
+  --rail-width: 14px;
   --max-width: 980px;
 }
 
@@ -38,198 +38,185 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  position: relative;
   min-height: 100vh;
+  background-image: radial-gradient(circle at 12% 8%, rgba(243,237,225,0.04), transparent 40%);
 }
 
-h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
 
 a { color: inherit; }
-
 ul { list-style: none; }
-
 button { font-family: inherit; cursor: pointer; }
 
-/* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
 /* =========================================================
-   BACKGROUND GRID (subtle blueprint / graph paper)
+   STRATA RAIL — fixed left column, the signature element.
+   A stack of soil-layer colors with a marker that slides to
+   the active section's depth, like a borehole log column.
    ========================================================= */
-.bg-grid {
+.strata-rail {
   position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--bg-grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--bg-grid-line) 1px, transparent 1px);
-  background-size: 32px 32px;
+  top: 0;
+  left: 0;
+  width: var(--rail-width);
+  height: 100vh;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.strata-band { flex: 1; }
+.band-summary    { background: #c1603a; }
+.band-skills     { background: #d9a441; }
+.band-projects   { background: #8a9a7a; }
+.band-experience { background: #6f8a9e; }
+
+.strata-marker {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  transform: translate(-5px, -5px);
+  transition: top 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (max-width: 640px) {
+  .strata-rail { width: 6px; }
+  .strata-marker { display: none; }
 }
 
 /* =========================================================
    PAGE FRAME
    ========================================================= */
 .sheet {
-  position: relative;
-  z-index: 1;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 40px 24px 0;
+  padding: 56px 24px 0 calc(24px + var(--rail-width));
 }
 
 /* =========================================================
-   TITLE BLOCK (header)
+   HERO HEADER
    ========================================================= */
-.title-block {
+.hero { margin-bottom: 40px; }
+
+.hero-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  gap: 32px;
-  flex-wrap: wrap;
-  padding-bottom: 28px;
-  border-bottom: 2px solid var(--ink);
-  margin-bottom: 32px;
-}
-
-.tb-eyebrow {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.14em;
-  color: var(--blue);
-  margin-bottom: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  margin-bottom: 24px;
 }
 
-.tb-name {
-  font-size: clamp(32px, 5vw, 48px);
-  line-height: 1.05;
-  margin-bottom: 8px;
+.hero-name {
+  font-size: clamp(48px, 9vw, 92px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+  color: var(--ink);
 }
 
-.tb-role {
-  font-size: 15px;
+.hero-role {
+  font-size: 16px;
   color: var(--ink-soft);
+  margin-bottom: 28px;
+  max-width: 46ch;
 }
 
-.tb-right {
+.hero-fields {
   display: flex;
-  gap: 28px;
+  gap: 40px;
   flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
 }
 
-.tb-field {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 120px;
-}
+.hf { display: flex; flex-direction: column; gap: 6px; }
 
-.tb-label {
+.hf-label {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.1em;
   color: var(--ink-faint);
 }
 
-.tb-value {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-}
+.hf-value { font-size: 13.5px; font-weight: 500; color: var(--ink); }
 
 /* =========================================================
-   SHEET INDEX / TAB NAV
+   DEPTH NAV (tabs)
    ========================================================= */
-.sheet-index {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 0;
-  overflow-x: auto;
-}
-
-.tab-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
+.depth-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
   border: 1px solid var(--line);
-  border-bottom: none;
-  padding: 12px 20px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  white-space: nowrap;
-  transition: background 0.15s ease, color 0.15s ease;
+  margin-bottom: 1px;
 }
 
-.tab-btn .tab-num {
+.depth-btn {
+  background: var(--bg-panel);
+  border: none;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  border-bottom: 2px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.depth-val {
   font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-faint);
-}
-
-.tab-btn .tab-label {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 20px;
   color: var(--ink-soft);
 }
 
-.tab-btn:hover {
-  background: var(--blue-soft);
+.depth-val small { font-size: 11px; }
+
+.depth-label {
+  font-size: 13px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.tab-btn.active {
-  background: var(--paper);
-  border-color: var(--line-strong);
-  position: relative;
-  top: 1px;
+.depth-btn:hover { background: var(--bg-raised); }
+
+.depth-btn.active {
+  background: var(--bg-raised);
+  border-bottom-color: var(--accent);
 }
 
-.tab-btn.active .tab-num { color: var(--blue); }
-.tab-btn.active .tab-label { color: var(--ink); }
+.depth-btn.active .depth-val { color: var(--accent); }
+.depth-btn.active .depth-label { color: var(--ink); }
 
 /* =========================================================
-   CONTENT PANEL FRAME + REGISTRATION MARKS (signature detail)
+   PANEL FRAME
    ========================================================= */
 .panel-frame {
-  position: relative;
-  background: var(--paper);
-  border: 1px solid var(--line-strong);
-  border-radius: 0 var(--radius) var(--radius) var(--radius);
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-top: none;
   padding: 48px clamp(20px, 5vw, 56px);
   min-height: 480px;
 }
 
-.reg-mark {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  pointer-events: none;
-}
-
-.reg-mark::before, .reg-mark::after {
-  content: "";
-  position: absolute;
-  background: var(--blue);
-}
-.reg-mark::before { width: 16px; height: 1.5px; top: 50%; left: 0; transform: translateY(-50%); }
-.reg-mark::after   { width: 1.5px; height: 16px; left: 50%; top: 0; transform: translateX(-50%); }
-
-.reg-mark.tl { top: -8px; left: -8px; }
-.reg-mark.tr { top: -8px; right: -8px; }
-.reg-mark.bl { bottom: -8px; left: -8px; }
-.reg-mark.br { bottom: -8px; right: -8px; }
-
-/* =========================================================
-   PANELS (tab contents)
-   ========================================================= */
-.panel { display: none; animation: fadeIn 0.35s ease; }
+.panel { display: none; animation: fadeIn 0.4s ease; }
 .panel.active { display: block; }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -237,42 +224,42 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   align-items: baseline;
   gap: 14px;
-  margin-bottom: 32px;
-  padding-bottom: 16px;
+  margin-bottom: 36px;
+  padding-bottom: 18px;
   border-bottom: 1px solid var(--line);
 }
 
 .panel-tag {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--blue);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  transition: color 0.3s ease;
 }
 
-.panel-head h2 { font-size: 26px; }
+.panel-head h2 { font-size: 24px; color: var(--ink); }
 
 /* ---- Summary ---- */
 .summary-grid {
   display: grid;
   grid-template-columns: 96px 1fr;
   gap: 32px;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
 }
 
 .avatar {
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  background: var(--blue);
-  color: #fff;
+  background: var(--accent);
+  color: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 26px;
   flex-shrink: 0;
+  transition: background 0.3s ease;
 }
 
 .summary-text p { color: var(--ink-soft); margin-bottom: 14px; max-width: 62ch; }
@@ -287,15 +274,15 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .fact {
-  background: var(--paper);
-  padding: 18px 20px;
+  background: var(--bg-raised);
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
-.fact-num { font-family: var(--font-display); font-size: 22px; color: var(--blue); }
-.fact-label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.03em; }
+.fact-num { font-family: var(--font-display); font-size: 20px; color: var(--accent); transition: color 0.3s ease; }
+.fact-label { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: 0.03em; }
 
 /* ---- Skills ---- */
 .skills-grid {
@@ -305,12 +292,14 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .skill-group h3 {
-  font-size: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--ink);
-  margin-bottom: 16px;
-  padding-bottom: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -318,7 +307,7 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 12px;
+  margin-bottom: 13px;
 }
 
 .skill-list li span {
@@ -329,38 +318,42 @@ button { font-family: inherit; cursor: pointer; }
 
 .bar {
   flex: 1;
-  height: 6px;
-  background: var(--blue-soft);
-  border-radius: 3px;
+  height: 5px;
+  background: var(--line);
   overflow: hidden;
 }
 
 .bar-fill {
   height: 100%;
-  background: var(--blue);
-  border-radius: 3px;
+  background: var(--accent);
+  transition: background 0.3s ease;
 }
 
 /* ---- Projects ---- */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
 }
 
 .project-card {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 22px;
+  background: var(--bg-panel);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: border-color 0.15s ease, transform 0.15s ease;
+  gap: 12px;
+  transition: background 0.15s ease;
 }
 
-.project-card:hover {
-  border-color: var(--blue);
-  transform: translateY(-2px);
+.project-card:hover { background: var(--bg-raised); }
+
+.project-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  margin-bottom: 4px;
 }
 
 .project-top {
@@ -369,19 +362,18 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
 }
 
-.project-code { font-family: var(--font-mono); font-size: 11px; color: var(--blue); }
+.project-code { font-family: var(--font-mono); font-size: 11px; color: var(--accent); transition: color 0.3s ease; }
 
 .project-status {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.06em;
-  color: var(--amber);
-  border: 1px solid var(--amber);
-  border-radius: 20px;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  border: 1px solid var(--line-strong);
   padding: 2px 9px;
 }
 
-.project-card h3 { font-size: 17px; line-height: 1.3; }
+.project-card h3 { font-family: var(--font-body); font-weight: 700; font-size: 16.5px; line-height: 1.3; color: var(--ink); }
 
 .project-card p { font-size: 13.5px; color: var(--ink-soft); flex-grow: 1; }
 
@@ -390,21 +382,21 @@ button { font-family: inherit; cursor: pointer; }
 .tag {
   font-family: var(--font-mono);
   font-size: 10.5px;
-  background: var(--blue-soft);
-  color: var(--blue);
+  background: var(--accent-soft);
+  color: var(--accent);
   padding: 3px 9px;
-  border-radius: 20px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .project-link {
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink);
   text-decoration: none;
   margin-top: 4px;
 }
 
-.project-link:hover { color: var(--blue); }
+.project-link:hover { color: var(--accent); }
 
 /* ---- Experience / Timeline ---- */
 .timeline {
@@ -413,61 +405,54 @@ button { font-family: inherit; cursor: pointer; }
   border-left: 1.5px solid var(--line);
 }
 
-.timeline-item {
-  position: relative;
-  padding-bottom: 36px;
-}
-
+.timeline-item { position: relative; padding-bottom: 38px; }
 .timeline-item:last-child { padding-bottom: 0; }
 
 .timeline-marker {
   position: absolute;
-  left: -32.5px;
+  left: -33px;
   top: 4px;
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--paper);
-  border: 2px solid var(--blue);
+  background: var(--bg-panel);
+  border: 2px solid var(--accent);
+  transition: border-color 0.3s ease;
 }
 
 .timeline-date {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--blue);
+  color: var(--accent);
   letter-spacing: 0.04em;
+  transition: color 0.3s ease;
 }
 
-.timeline-content h3 { font-size: 16px; margin-top: 4px; margin-bottom: 2px; }
-
+.timeline-content h3 { font-family: var(--font-body); font-weight: 700; font-size: 16px; margin-top: 6px; margin-bottom: 3px; color: var(--ink); }
 .timeline-org { font-size: 13px; color: var(--ink-faint); margin-bottom: 8px; }
-
 .timeline-content p:not(.timeline-org) { font-size: 13.5px; color: var(--ink-soft); max-width: 60ch; }
 
 /* =========================================================
    CONTACT / FOOTER STRIP
    ========================================================= */
 .contact-strip {
-  margin-top: 40px;
-  padding: 28px 4px 40px;
-  border-top: 2px solid var(--ink);
+  margin-top: 1px;
+  padding: 28px 4px 56px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-top: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
+  padding-left: clamp(20px, 5vw, 56px);
+  padding-right: clamp(20px, 5vw, 56px);
 }
 
-.contact-note {
-  font-size: 13.5px;
-  color: var(--ink-soft);
-}
+.contact-note { font-size: 13.5px; color: var(--ink-soft); }
 
-.contact-links {
-  display: flex;
-  gap: 22px;
-  flex-wrap: wrap;
-}
+.contact-links { display: flex; gap: 22px; flex-wrap: wrap; }
 
 .contact-link {
   font-family: var(--font-mono);
@@ -480,35 +465,32 @@ button { font-family: inherit; cursor: pointer; }
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 
-.contact-link:hover { color: var(--blue); border-color: var(--blue); }
+.contact-link:hover { color: var(--accent); border-color: var(--accent); }
 
 .contact-copyright {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--ink-faint);
   width: 100%;
-  text-align: left;
 }
 
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 640px) {
-  .sheet { padding: 24px 16px 0; }
-  .title-block { flex-direction: column; align-items: flex-start; gap: 20px; }
-  .tb-right { gap: 18px; }
+  .sheet { padding: 32px 16px 0 calc(16px + 6px); }
+  .depth-nav { grid-template-columns: repeat(2, 1fr); }
   .panel-frame { padding: 32px 18px; }
   .summary-grid { grid-template-columns: 1fr; }
-  .avatar { width: 72px; height: 72px; font-size: 22px; }
-  .tab-btn { padding: 10px 14px; }
-  .tab-btn .tab-label { font-size: 13px; }
+  .avatar { width: 72px; height: 72px; font-size: 20px; }
+  .hero-fields { gap: 24px; }
 }
 
 /* =========================================================
-   ACCESSIBILITY: visible keyboard focus
+   ACCESSIBILITY
    ========================================================= */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
