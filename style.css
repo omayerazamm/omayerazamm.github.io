@@ -1,496 +1,133 @@
-/* =========================================================
-   DESIGN TOKENS
-   Edit these variables to re-theme the whole site in one place.
-   --accent is overridden live by script.js per active tab —
-   see the data-accent attribute on each .depth-btn in index.html.
-   ========================================================= */
-:root {
-  --bg: #121110;
-  --bg-panel: #1a1816;
-  --bg-raised: #211e1b;
-  --ink: #f3ede1;
-  --ink-soft: #b7ac99;
-  --ink-faint: #7d7466;
-  --line: rgba(243, 237, 225, 0.1);
-  --line-strong: rgba(243, 237, 225, 0.2);
+// =========================================================
+// TAB SWITCHING
+// This reads data-tab on each button and toggles the matching
+// <section id="..."> panel. Adding a new tab in index.html
+// (button + section with matching id) works automatically —
+// no changes needed here.
+// =========================================================
+// =========================================================
+// RENDER CONTENT FROM data.js
+// Reads PORTFOLIO_DATA and builds the DOM for each panel.
+// If you add a new content array to data.js and want it
+// rendered somewhere, write a small render function like
+// these and call it in renderAll() below.
+// =========================================================
+function renderSkills() {
+  const container = document.getElementById('skills-container');
+  if (!container || typeof PORTFOLIO_DATA === 'undefined') return;
 
-  --accent: #c1603a;       /* live-updated by JS per active tab */
-  --accent-soft: rgba(193, 96, 58, 0.14);
-
-  --font-display: 'Archivo Black', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'Space Mono', monospace;
-
-  --radius: 2px;
-  --rail-width: 14px;
-  --max-width: 980px;
+  container.innerHTML = PORTFOLIO_DATA.skills.map(group => `
+    <div class="skill-group">
+      <h3>${group.group}</h3>
+      <ul class="skill-list">
+        ${group.items.map(item => `
+          <li>
+            <span>${item.name}</span>
+            <div class="bar"><div class="bar-fill" style="width:${item.level}%"></div></div>
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+  `).join('');
 }
 
-/* =========================================================
-   RESET & BASE
-   ========================================================= */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+function renderProjects() {
+  const container = document.getElementById('projects-container');
+  if (!container || typeof PORTFOLIO_DATA === 'undefined') return;
 
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  background-image: radial-gradient(circle at 12% 8%, rgba(243,237,225,0.04), transparent 40%);
+  container.innerHTML = PORTFOLIO_DATA.projects.map(p => `
+    <article class="project-card">
+      ${p.image ? `<img class="project-image" src="${p.image}" alt="${p.title}">` : ''}
+      <div class="project-top">
+        <span class="project-code">${p.code}</span>
+        <span class="project-status">${p.status}</span>
+      </div>
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+      <div class="tag-row">
+        ${p.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+      </div>
+      ${p.link ? `<a class="project-link" href="${p.link}" target="_blank" rel="noopener">View details →</a>` : ''}
+    </article>
+  `).join('');
 }
 
-h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+function renderExperience() {
+  const container = document.getElementById('experience-container');
+  if (!container || typeof PORTFOLIO_DATA === 'undefined') return;
 
-a { color: inherit; }
-ul { list-style: none; }
-button { font-family: inherit; cursor: pointer; }
-
-@media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  container.innerHTML = PORTFOLIO_DATA.experience.map(e => `
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <span class="timeline-date">${e.date}</span>
+        <h3>${e.title}</h3>
+        <p class="timeline-org">${e.org}</p>
+        <p>${e.description}</p>
+      </div>
+    </div>
+  `).join('');
 }
 
-/* =========================================================
-   STRATA RAIL — fixed left column, the signature element.
-   A stack of soil-layer colors with a marker that slides to
-   the active section's depth, like a borehole log column.
-   ========================================================= */
-.strata-rail {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: var(--rail-width);
-  height: 100vh;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
+function renderAll() {
+  renderSkills();
+  renderProjects();
+  renderExperience();
 }
 
-.strata-band { flex: 1; }
-.band-summary    { background: #c1603a; }
-.band-skills     { background: #d9a441; }
-.band-projects   { background: #8a9a7a; }
-.band-experience { background: #6f8a9e; }
+document.addEventListener('DOMContentLoaded', () => {
+  renderAll();
 
-.strata-marker {
-  position: absolute;
-  left: 100%;
-  top: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--ink);
-  transform: translate(-5px, -5px);
-  transition: top 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-}
+  const tabButtons = document.querySelectorAll('.depth-btn');
+  const panels = document.querySelectorAll('.panel');
 
-@media (max-width: 640px) {
-  .strata-rail { width: 6px; }
-  .strata-marker { display: none; }
-}
+  const marker = document.getElementById('strata-marker');
 
-/* =========================================================
-   PAGE FRAME
-   ========================================================= */
-.sheet {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 56px 24px 0 calc(24px + var(--rail-width));
-}
+  function activateTab(btn) {
+    const target = btn.dataset.tab;
+    const accent = btn.dataset.accent;
 
-/* =========================================================
-   HERO HEADER
-   ========================================================= */
-.hero { margin-bottom: 40px; }
+    tabButtons.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
 
-.hero-top {
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--ink-faint);
-  margin-bottom: 24px;
-}
+    panels.forEach(panel => {
+      panel.classList.toggle('active', panel.id === target);
+    });
 
-.hero-name {
-  font-size: clamp(48px, 9vw, 92px);
-  line-height: 0.92;
-  letter-spacing: -0.01em;
-  margin-bottom: 20px;
-  color: var(--ink);
-}
+    // Shift the whole site's accent color to match this section
+    if (accent) {
+      document.documentElement.style.setProperty('--accent', accent);
+      document.documentElement.style.setProperty('--accent-soft', accent + '24');
+    }
 
-.hero-role {
-  font-size: 16px;
-  color: var(--ink-soft);
-  margin-bottom: 28px;
-  max-width: 46ch;
-}
+    // Slide the strata-rail marker to this tab's position among all tabs
+    if (marker) {
+      const index = Array.from(tabButtons).indexOf(btn);
+      const percent = (index / (tabButtons.length - 1)) * 100;
+      marker.style.top = `${percent}%`;
+    }
+  }
 
-.hero-fields {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-}
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => activateTab(btn));
+  });
 
-.hf { display: flex; flex-direction: column; gap: 6px; }
+  // Set initial marker position/accent to match the tab marked active in HTML
+  const initialActive = document.querySelector('.depth-btn.active');
+  if (initialActive) activateTab(initialActive);
 
-.hf-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--ink-faint);
-}
+  // Optional: allow deep-linking via URL hash, e.g. index.html#projects
+  const hash = window.location.hash.replace('#', '');
+  if (hash) {
+    const matchingBtn = document.querySelector(`.depth-btn[data-tab="${hash}"]`);
+    if (matchingBtn) matchingBtn.click();
+  }
 
-.hf-value { font-size: 13.5px; font-weight: 500; color: var(--ink); }
-
-/* =========================================================
-   DEPTH NAV (tabs)
-   ========================================================= */
-.depth-nav {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  margin-bottom: 1px;
-}
-
-.depth-btn {
-  background: var(--bg-panel);
-  border: none;
-  padding: 18px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  text-align: left;
-  border-bottom: 2px solid transparent;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.depth-val {
-  font-family: var(--font-mono);
-  font-size: 20px;
-  color: var(--ink-soft);
-}
-
-.depth-val small { font-size: 11px; }
-
-.depth-label {
-  font-size: 13px;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.depth-btn:hover { background: var(--bg-raised); }
-
-.depth-btn.active {
-  background: var(--bg-raised);
-  border-bottom-color: var(--accent);
-}
-
-.depth-btn.active .depth-val { color: var(--accent); }
-.depth-btn.active .depth-label { color: var(--ink); }
-
-/* =========================================================
-   PANEL FRAME
-   ========================================================= */
-.panel-frame {
-  background: var(--bg-panel);
-  border: 1px solid var(--line);
-  border-top: none;
-  padding: 48px clamp(20px, 5vw, 56px);
-  min-height: 480px;
-}
-
-.panel { display: none; animation: fadeIn 0.4s ease; }
-.panel.active { display: block; }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.panel-head {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin-bottom: 36px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
-}
-
-.panel-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  transition: color 0.3s ease;
-}
-
-.panel-head h2 { font-size: 24px; color: var(--ink); }
-
-/* ---- Summary ---- */
-.summary-grid {
-  display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: 32px;
-  margin-bottom: 44px;
-}
-
-.avatar {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 26px;
-  flex-shrink: 0;
-  transition: background 0.3s ease;
-}
-
-.summary-text p { color: var(--ink-soft); margin-bottom: 14px; max-width: 62ch; }
-.summary-text p:last-child { margin-bottom: 0; }
-
-.quick-facts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-
-.fact {
-  background: var(--bg-raised);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.fact-num { font-family: var(--font-display); font-size: 20px; color: var(--accent); transition: color 0.3s ease; }
-.fact-label { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: 0.03em; }
-
-/* ---- Skills ---- */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 36px 40px;
-}
-
-.skill-group h3 {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-  margin-bottom: 18px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--line);
-}
-
-.skill-list li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 13px;
-}
-
-.skill-list li span {
-  flex: 0 0 150px;
-  font-size: 13.5px;
-  color: var(--ink-soft);
-}
-
-.bar {
-  flex: 1;
-  height: 5px;
-  background: var(--line);
-  overflow: hidden;
-}
-
-.bar-fill {
-  height: 100%;
-  background: var(--accent);
-  transition: background 0.3s ease;
-}
-
-/* ---- Projects ---- */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-
-.project-card {
-  background: var(--bg-panel);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: background 0.15s ease;
-}
-
-.project-card:hover { background: var(--bg-raised); }
-
-.project-image {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  margin-bottom: 4px;
-}
-
-.project-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.project-code { font-family: var(--font-mono); font-size: 11px; color: var(--accent); transition: color 0.3s ease; }
-
-.project-status {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.05em;
-  color: var(--ink-faint);
-  border: 1px solid var(--line-strong);
-  padding: 2px 9px;
-}
-
-.project-card h3 { font-family: var(--font-body); font-weight: 700; font-size: 16.5px; line-height: 1.3; color: var(--ink); }
-
-.project-card p { font-size: 13.5px; color: var(--ink-soft); flex-grow: 1; }
-
-.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
-
-.tag {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  padding: 3px 9px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.project-link {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-  text-decoration: none;
-  margin-top: 4px;
-}
-
-.project-link:hover { color: var(--accent); }
-
-/* ---- Experience / Timeline ---- */
-.timeline {
-  position: relative;
-  padding-left: 28px;
-  border-left: 1.5px solid var(--line);
-}
-
-.timeline-item { position: relative; padding-bottom: 38px; }
-.timeline-item:last-child { padding-bottom: 0; }
-
-.timeline-marker {
-  position: absolute;
-  left: -33px;
-  top: 4px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--bg-panel);
-  border: 2px solid var(--accent);
-  transition: border-color 0.3s ease;
-}
-
-.timeline-date {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  transition: color 0.3s ease;
-}
-
-.timeline-content h3 { font-family: var(--font-body); font-weight: 700; font-size: 16px; margin-top: 6px; margin-bottom: 3px; color: var(--ink); }
-.timeline-org { font-size: 13px; color: var(--ink-faint); margin-bottom: 8px; }
-.timeline-content p:not(.timeline-org) { font-size: 13.5px; color: var(--ink-soft); max-width: 60ch; }
-
-/* =========================================================
-   CONTACT / FOOTER STRIP
-   ========================================================= */
-.contact-strip {
-  margin-top: 1px;
-  padding: 28px 4px 56px;
-  background: var(--bg-panel);
-  border: 1px solid var(--line);
-  border-top: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding-left: clamp(20px, 5vw, 56px);
-  padding-right: clamp(20px, 5vw, 56px);
-}
-
-.contact-note { font-size: 13.5px; color: var(--ink-soft); }
-
-.contact-links { display: flex; gap: 22px; flex-wrap: wrap; }
-
-.contact-link {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  color: var(--ink);
-  padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-
-.contact-link:hover { color: var(--accent); border-color: var(--accent); }
-
-.contact-copyright {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-faint);
-  width: 100%;
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-@media (max-width: 640px) {
-  .sheet { padding: 32px 16px 0 calc(16px + 6px); }
-  .depth-nav { grid-template-columns: repeat(2, 1fr); }
-  .panel-frame { padding: 32px 18px; }
-  .summary-grid { grid-template-columns: 1fr; }
-  .avatar { width: 72px; height: 72px; font-size: 20px; }
-  .hero-fields { gap: 24px; }
-}
-
-/* =========================================================
-   ACCESSIBILITY
-   ========================================================= */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
+  // Footer year, auto-updates so you never have to touch it
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+});
