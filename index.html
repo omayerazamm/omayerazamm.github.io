@@ -3,79 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omayer Azam — Portfolio</title>
+<title>Omayer Siddique — Portfolio</title>
 <!-- ▼▼▼ UPDATE: change the <title> above to your own name ▼▼▼ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Faint background grid, like graph/blueprint paper -->
-<div class="bg-grid" aria-hidden="true"></div>
+<!-- Fixed left strata rail — the signature visual element.
+     Each band corresponds to a tab; the marker slides to the
+     active band's depth. Purely decorative, aria-hidden. -->
+<div class="strata-rail" aria-hidden="true">
+  <div class="strata-band band-summary"></div>
+  <div class="strata-band band-skills"></div>
+  <div class="strata-band band-projects"></div>
+  <div class="strata-band band-experience"></div>
+  <div class="strata-marker" id="strata-marker"></div>
+</div>
 
 <div class="sheet">
 
-  <!-- ============ HEADER / TITLE BLOCK ============ -->
-  <!-- ▼▼▼ UPDATE: name, role/tagline, and the meta fields (location, focus, status) ▼▼▼ -->
-  <header class="title-block">
-    <div class="tb-left">
-      <p class="tb-eyebrow">PORTFOLIO</p>
-      <h1 class="tb-name">Omayer Azam</h1>
-      <p class="tb-role">Civil Engineering Student · Geotechnical &amp; ML Research</p>
+  <!-- ============ HERO HEADER ============ -->
+  <!-- ▼▼▼ UPDATE: name, role/tagline, and the two meta fields ▼▼▼ -->
+  <header class="hero">
+    <div class="hero-top">
+      <span class="hero-eyebrow">BOREHOLE LOG — BH·01</span>
+      <span class="hero-loc">DHAKA, BANGLADESH</span>
     </div>
-    <div class="tb-right">
-      <div class="tb-field">
-        <span class="tb-label">LOCATION</span>
-        <span class="tb-value">Dhaka, Bangladesh</span>
+    <h1 class="hero-name">OMAYER<br>SIDDIQUE</h1>
+    <p class="hero-role">Civil Engineering Student — Geotechnical &amp; ML Research</p>
+    <div class="hero-fields">
+      <div class="hf">
+        <span class="hf-label">FOCUS</span>
+        <span class="hf-value">FLAC3D · Machine Learning</span>
       </div>
-      <div class="tb-field">
-        <span class="tb-label">FOCUS</span>
-        <span class="tb-value">FLAC3D · Machine Learning</span>
-      </div>
-      <div class="tb-field">
-        <span class="tb-label">STATUS</span>
-        <span class="tb-value">Open to research opportunities</span>
+      <div class="hf">
+        <span class="hf-label">STATUS</span>
+        <span class="hf-value">Open to research opportunities</span>
       </div>
     </div>
   </header>
 
-  <!-- ============ NAV / SHEET INDEX TABS ============ -->
-  <nav class="sheet-index" role="tablist" aria-label="Portfolio sections">
-    <button class="tab-btn active" data-tab="summary" role="tab" aria-selected="true">
-      <span class="tab-num">01</span><span class="tab-label">Summary</span>
+  <!-- ============ DEPTH NAV (tabs) ============ -->
+  <!-- data-accent sets the section's signature color; data-depth is decorative flavor text -->
+  <nav class="depth-nav" role="tablist" aria-label="Portfolio sections">
+    <button class="depth-btn active" data-tab="summary" data-depth="0.0" data-accent="#c1603a" role="tab" aria-selected="true">
+      <span class="depth-val">0.0<small>m</small></span>
+      <span class="depth-label">Summary</span>
     </button>
-    <button class="tab-btn" data-tab="skills" role="tab" aria-selected="false">
-      <span class="tab-num">02</span><span class="tab-label">Skills</span>
+    <button class="depth-btn" data-tab="skills" data-depth="12.5" data-accent="#d9a441" role="tab" aria-selected="false">
+      <span class="depth-val">12.5<small>m</small></span>
+      <span class="depth-label">Skills</span>
     </button>
-    <button class="tab-btn" data-tab="projects" role="tab" aria-selected="false">
-      <span class="tab-num">03</span><span class="tab-label">Projects</span>
+    <button class="depth-btn" data-tab="projects" data-depth="28.0" data-accent="#8a9a7a" role="tab" aria-selected="false">
+      <span class="depth-val">28.0<small>m</small></span>
+      <span class="depth-label">Projects</span>
     </button>
-    <button class="tab-btn" data-tab="experience" role="tab" aria-selected="false">
-      <span class="tab-num">04</span><span class="tab-label">Experience</span>
+    <button class="depth-btn" data-tab="experience" data-depth="45.0" data-accent="#6f8a9e" role="tab" aria-selected="false">
+      <span class="depth-val">45.0<small>m</small></span>
+      <span class="depth-label">Experience</span>
     </button>
     <!--
       ▼ TO ADD A NEW TAB LATER:
-      1. Copy a <button> above, give it a new data-tab="yourtab" value.
-      2. Copy a <section class="panel"> below, give it id="yourtab".
-      3. That's it — script.js handles the switching automatically.
+      1. Copy a <button> above — set data-tab, data-depth (any number), data-accent (any hex color).
+      2. Copy a <section class="panel"> below, give it the matching id.
     -->
   </nav>
 
   <!-- ============ CONTENT PANEL ============ -->
-  <main class="panel-frame">
-    <!-- corner registration marks — the signature visual detail -->
-    <span class="reg-mark tl" aria-hidden="true"></span>
-    <span class="reg-mark tr" aria-hidden="true"></span>
-    <span class="reg-mark bl" aria-hidden="true"></span>
-    <span class="reg-mark br" aria-hidden="true"></span>
+  <main class="panel-frame" id="panel-frame">
 
-    <!-- ---------- 01 SUMMARY ---------- -->
+    <!-- ---------- SUMMARY ---------- -->
     <section class="panel active" id="summary" role="tabpanel">
       <div class="panel-head">
-        <span class="panel-tag">01 / SUMMARY</span>
+        <span class="panel-tag">0.0m — SUMMARY</span>
         <h2>About</h2>
       </div>
 
@@ -90,7 +94,7 @@
             working at the intersection of geotechnical engineering and machine learning.
             My current research applies FLAC3D numerical modeling alongside ML-based
             prediction methods to soil behavior problems, with the long-term goal of
-            contributing to research.
+            contributing to a funded graduate research track abroad.
           </p>
           <p>
             Alongside research, I'm building a solid foundation in structural engineering
@@ -122,181 +126,42 @@
       </div>
     </section>
 
-    <!-- ---------- 02 SKILLS ---------- -->
+    <!-- ---------- SKILLS ---------- -->
     <section class="panel" id="skills" role="tabpanel">
       <div class="panel-head">
-        <span class="panel-tag">02 / SKILLS</span>
+        <span class="panel-tag">12.5m — SKILLS</span>
         <h2>Skills</h2>
       </div>
 
-      <!-- ▼▼▼ UPDATE: edit categories, skill names, and proficiency bars (0–100) ▼▼▼ -->
-      <div class="skills-grid">
-
-        <div class="skill-group">
-          <h3>Modeling &amp; Simulation</h3>
-          <ul class="skill-list">
-            <li><span>FLAC3D</span><div class="bar"><div class="bar-fill" style="width:65%"></div></div></li>
-            <li><span>AutoCAD</span><div class="bar"><div class="bar-fill" style="width:55%"></div></div></li>
-            <li><span>Numerical Methods</span><div class="bar"><div class="bar-fill" style="width:70%"></div></div></li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3>Programming &amp; ML</h3>
-          <ul class="skill-list">
-            <li><span>Python</span><div class="bar"><div class="bar-fill" style="width:60%"></div></div></li>
-            <li><span>Data Analysis</span><div class="bar"><div class="bar-fill" style="width:55%"></div></div></li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3>Core Engineering</h3>
-          <ul class="skill-list">
-            <li><span>Mechanics of Materials</span><div class="bar"><div class="bar-fill" style="width:70%"></div></div></li>
-            <li><span>Fluid Mechanics</span><div class="bar"><div class="bar-fill" style="width:65%"></div></div></li>
-            <li><span>Geotechnical Engineering</span><div class="bar"><div class="bar-fill" style="width:60%"></div></div></li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3>Other</h3>
-          <ul class="skill-list">
-            <li><span>Technical Writing</span><div class="bar"><div class="bar-fill" style="width:75%"></div></div></li>
-            <li><span>Research Presentation</span><div class="bar"><div class="bar-fill" style="width:70%"></div></div></li>
-            <li><span>Project Planning</span><div class="bar"><div class="bar-fill" style="width:65%"></div></div></li>
-          </ul>
-        </div>
-
-        <!--
-          ▼ TO ADD A NEW SKILL GROUP: copy a whole <div class="skill-group">...</div> block.
-          ▼ TO ADD A NEW SKILL: copy an <li>...</li> line and edit the name + bar width%.
-        -->
+      <!-- ▼▼▼ UPDATE: edit content in data.js, NOT here. This grid is filled in by script.js ▼▼▼ -->
+      <div class="skills-grid" id="skills-container">
+        <!-- populated from PORTFOLIO_DATA.skills in data.js -->
       </div>
     </section>
 
-    <!-- ---------- 03 PROJECTS ---------- -->
+    <!-- ---------- PROJECTS ---------- -->
     <section class="panel" id="projects" role="tabpanel">
       <div class="panel-head">
-        <span class="panel-tag">03 / PROJECTS</span>
+        <span class="panel-tag">28.0m — PROJECTS</span>
         <h2>Projects</h2>
       </div>
 
-      <!-- ▼▼▼ UPDATE: replace each card's content, tags, and links with your real projects ▼▼▼ -->
-      <div class="project-grid">
-
-        <article class="project-card">
-          <div class="project-top">
-            <span class="project-code">PRJ.01</span>
-            <span class="project-status">Ongoing</span>
-          </div>
-          <h3>ML-Based Soil Parameter Prediction</h3>
-          <p>
-            National dataset initiative proposal comparing Random Forest, XGBoost,
-            and Gaussian Process Regression for predicting geotechnical soil
-            parameters, benchmarked against international database models.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Geotechnical</span>
-            <span class="tag">Dataset Design</span>
-          </div>
-          <a class="project-link" href="#">View details →</a>
-        </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <span class="project-code">PRJ.02</span>
-            <span class="project-status">Ongoing</span>
-          </div>
-          <h3>Centralized Geotechnical–Environmental Data Framework</h3>
-          <p>
-            A cost-phased roadmap for a national geotechnical database, presented
-            with the Environment and Disaster Management Club, University of
-            Asia Pacific.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Data Systems</span>
-            <span class="tag">Environmental</span>
-            <span class="tag">Policy Roadmap</span>
-          </div>
-          <a class="project-link" href="#">View details →</a>
-        </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <span class="project-code">PRJ.03</span>
-            <span class="project-status">In Progress</span>
-          </div>
-          <h3>FLAC3D Geotechnical Modeling Research</h3>
-          <p>
-            Numerical modeling research under faculty collaboration, combining
-            FLAC3D simulation output with machine learning methods.
-          </p>
-          <div class="tag-row">
-            <span class="tag">FLAC3D</span>
-            <span class="tag">Research</span>
-            <span class="tag">Python</span>
-          </div>
-          <a class="project-link" href="#">View details →</a>
-        </article>
-
-        <!-- ▼ TO ADD A NEW PROJECT: copy one whole <article class="project-card">...</article> block -->
-
+      <!-- ▼▼▼ UPDATE: edit content in data.js, NOT here. This grid is filled in by script.js ▼▼▼ -->
+      <div class="project-grid" id="projects-container">
+        <!-- populated from PORTFOLIO_DATA.projects in data.js -->
       </div>
     </section>
 
-    <!-- ---------- 04 EXPERIENCE ---------- -->
+    <!-- ---------- EXPERIENCE ---------- -->
     <section class="panel" id="experience" role="tabpanel">
       <div class="panel-head">
-        <span class="panel-tag">04 / EXPERIENCE</span>
+        <span class="panel-tag">45.0m — EXPERIENCE</span>
         <h2>Experience</h2>
       </div>
 
-      <!-- ▼▼▼ UPDATE: replace with your real roles, dates, and descriptions ▼▼▼ -->
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Junly, 2026 — Present</span>
-            <h3>Undergraduate Researcher — Geotechnical Modeling</h3>
-            <p class="timeline-org">University of Asia Pacific, </p>
-            <p>
-              Researching FLAC3D-based geotechnical modeling combined with machine
-              learning methods, working toward a defined 6-month research deliverable
-              and a funded graduate scholarship application.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">2025</span>
-            <h3>Peer Instructor — ML Applications in Geotechnical Engineering</h3>
-            <p class="timeline-org">University of Asia Pacific</p>
-            <p>
-              Designed and delivered a 50-minute lesson covering Random Forest, ANN,
-              and SVR methods with real case studies and an interactive teaching aid.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">2024 — Present</span>
-            <h3>B.Sc. in Civil Engineering</h3>
-            <p class="timeline-org">University of Asia Pacific</p>
-            <p>
-              Coursework includes Mechanics of Materials, Fluid Mechanics, and
-              Numerical Methods, Engineering Mathematics, Materials Science 
-            </p>
-          </div>
-        </div>
-
-        <!-- ▼ TO ADD A NEW ENTRY: copy one whole <div class="timeline-item">...</div> block -->
-
+      <!-- ▼▼▼ UPDATE: edit content in data.js, NOT here. This list is filled in by script.js ▼▼▼ -->
+      <div class="timeline" id="experience-container">
+        <!-- populated from PORTFOLIO_DATA.experience in data.js -->
       </div>
     </section>
 
@@ -307,17 +172,18 @@
   <footer class="contact-strip">
     <p class="contact-note">Let's talk research, structural work, or opportunities.</p>
     <div class="contact-links">
-      <a href=omayer.azamm@gmail.com class="contact-link">Email</a>
-      <a href=www.linkedin.com/in/omayer-azam class="contact-link" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:youremail@example.com" class="contact-link">Email</a>
+      <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/yourusername" class="contact-link" target="_blank" rel="noopener">GitHub</a>
       <a href="#" class="contact-link" target="_blank" rel="noopener">Resume</a>
       <!-- ▼ TO ADD A NEW LINK: copy an <a class="contact-link">...</a> line -->
     </div>
-    <p class="contact-copyright">© <span id="year"></span> Omayer Azam</p>
+    <p class="contact-copyright">© <span id="year"></span> Omayer Siddique</p>
   </footer>
 
 </div>
 
+<script src="data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
