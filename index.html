@@ -1,189 +1,924 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omayer Siddique — Portfolio</title>
-<!-- ▼▼▼ UPDATE: change the <title> above to your own name ▼▼▼ -->
+<!--
+  ============================================================================
+  PERSONAL PORTFOLIO — CIVIL ENGINEER (STRUCTURAL + GEOTECHNICAL + RESEARCH)
+  ============================================================================
+  HOW TO CUSTOMIZE THIS FILE — search for these markers and replace them:
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    [YOUR NAME]        → your full name (appears in <title>, hero, footer, JSON-LD)
+    [YOUR TITLE]        → your professional title / tagline
+    [YOUR EMAIL]        → your email address (used in mailto: links + contact info)
+    [YOUR PHONE]        → your phone number
+    [YOUR LOCATION]      → city, country
+    [YOUR GITHUB URL]      → https://github.com/yourusername
+    [YOUR LINKEDIN URL]     → https://linkedin.com/in/yourusername
+    [YOUR TWITTER URL]      → https://x.com/yourusername
+    [YOUR LEETCODE URL]     → https://leetcode.com/yourusername
+    [YOUR CODEFORCES URL]    → https://codeforces.com/profile/yourusername
+    [YOUR HACKERRANK URL]    → https://hackerrank.com/yourusername
+    [YOUR MEDIUM URL]      → https://medium.com/@yourusername
+    [RESUME PDF PATH]      → assets/resume.pdf (add your actual resume file)
+    [PORTRAIT IMAGE PATH]    → assets/portrait.jpg (add your actual photo)
+    [YOUR DOMAIN]        → https://yourusername.github.io/your-repo/ (for canonical + OG tags)
+    [FAVICON PATH]       → assets/favicon.ico
+
+  All project, skill, experience, education, certification, and achievement
+  entries below are clearly marked placeholder blocks — duplicate the block
+  and edit the text to add or remove entries.
+  ============================================================================
+-->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ==================== PRIMARY SEO ==================== -->
+  <title>[YOUR NAME] — Civil Engineer | Structural &amp; Geotechnical</title>
+  <meta name="description" content="[YOUR NAME] is a civil engineer working across structural design, geotechnical analysis, and applied research. Explore projects, publications, and experience." />
+  <meta name="keywords" content="civil engineer, structural engineering, geotechnical engineering, portfolio, [YOUR NAME], research, CAD, structural analysis" />
+  <meta name="author" content="[YOUR NAME]" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="[YOUR DOMAIN]" />
+
+  <!-- ==================== OPEN GRAPH ==================== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="[YOUR NAME] — Civil Engineer | Structural &amp; Geotechnical" />
+  <meta property="og:description" content="Portfolio of [YOUR NAME], a civil engineer specializing in structural design, geotechnical analysis, and research." />
+  <meta property="og:url" content="[YOUR DOMAIN]" />
+  <meta property="og:image" content="[YOUR DOMAIN]assets/og-cover.jpg" />
+  <meta property="og:site_name" content="[YOUR NAME] — Portfolio" />
+
+  <!-- ==================== TWITTER CARD ==================== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="[YOUR NAME] — Civil Engineer | Structural &amp; Geotechnical" />
+  <meta name="twitter:description" content="Portfolio of [YOUR NAME], a civil engineer specializing in structural design, geotechnical analysis, and research." />
+  <meta name="twitter:image" content="[YOUR DOMAIN]assets/og-cover.jpg" />
+
+  <!-- ==================== FAVICON ==================== -->
+  <link rel="icon" href="[FAVICON PATH]" type="image/x-icon" />
+
+  <!-- ==================== FONTS (preconnect for performance) ==================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- ==================== STYLES ==================== -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ==================== STRUCTURED DATA (JSON-LD) ==================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "[YOUR NAME]",
+    "jobTitle": "Civil Engineer",
+    "description": "Civil engineer working across structural design, geotechnical analysis, and applied research.",
+    "url": "[YOUR DOMAIN]",
+    "email": "mailto:[YOUR EMAIL]",
+    "sameAs": [
+      "[YOUR GITHUB URL]",
+      "[YOUR LINKEDIN URL]",
+      "[YOUR TWITTER URL]"
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- Fixed left strata rail — the signature visual element.
-     Each band corresponds to a tab; the marker slides to the
-     active band's depth. Purely decorative, aria-hidden. -->
-<div class="strata-rail" aria-hidden="true">
-  <div class="strata-band band-summary"></div>
-  <div class="strata-band band-skills"></div>
-  <div class="strata-band band-projects"></div>
-  <div class="strata-band band-experience"></div>
-  <div class="strata-marker" id="strata-marker"></div>
-</div>
+  <!-- ==================== NAVIGATION ==================== -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo" aria-label="[YOUR NAME] — home">DWG<span class="dot">.</span>[YOUR NAME]</a>
 
-<div class="sheet">
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#certificates" class="nav-link">Certificates</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
 
-  <!-- ============ HERO HEADER ============ -->
-  <!-- ▼▼▼ UPDATE: name, role/tagline, and the two meta fields ▼▼▼ -->
-  <header class="hero">
-    <div class="hero-top">
-      <span class="hero-eyebrow">BOREHOLE LOG — BH·01</span>
-      <span class="hero-loc">DHAKA, BANGLADESH</span>
-    </div>
-    <h1 class="hero-name">OMAYER<br>SIDDIQUE</h1>
-    <p class="hero-role">Civil Engineering Student — Geotechnical &amp; ML Research</p>
-    <div class="hero-fields">
-      <div class="hf">
-        <span class="hf-label">FOCUS</span>
-        <span class="hf-value">FLAC3D · Machine Learning</span>
-      </div>
-      <div class="hf">
-        <span class="hf-label">STATUS</span>
-        <span class="hf-value">Open to research opportunities</span>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+        <a href="[RESUME PDF PATH]" class="btn btn-primary btn-sm" download aria-label="Download resume PDF">Resume</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" type="button">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- ============ DEPTH NAV (tabs) ============ -->
-  <!-- data-accent sets the section's signature color; data-depth is decorative flavor text -->
-  <nav class="depth-nav" role="tablist" aria-label="Portfolio sections">
-    <button class="depth-btn active" data-tab="summary" data-depth="0.0" data-accent="#c1603a" role="tab" aria-selected="true">
-      <span class="depth-val">0.0<small>m</small></span>
-      <span class="depth-label">Summary</span>
-    </button>
-    <button class="depth-btn" data-tab="skills" data-depth="12.5" data-accent="#d9a441" role="tab" aria-selected="false">
-      <span class="depth-val">12.5<small>m</small></span>
-      <span class="depth-label">Skills</span>
-    </button>
-    <button class="depth-btn" data-tab="projects" data-depth="28.0" data-accent="#8a9a7a" role="tab" aria-selected="false">
-      <span class="depth-val">28.0<small>m</small></span>
-      <span class="depth-label">Projects</span>
-    </button>
-    <button class="depth-btn" data-tab="experience" data-depth="45.0" data-accent="#6f8a9e" role="tab" aria-selected="false">
-      <span class="depth-val">45.0<small>m</small></span>
-      <span class="depth-label">Experience</span>
-    </button>
-    <!--
-      ▼ TO ADD A NEW TAB LATER:
-      1. Copy a <button> above — set data-tab, data-depth (any number), data-accent (any hex color).
-      2. Copy a <section class="panel"> below, give it the matching id.
-    -->
-  </nav>
-
-  <!-- ============ CONTENT PANEL ============ -->
-  <main class="panel-frame" id="panel-frame">
-
-    <!-- ---------- SUMMARY ---------- -->
-    <section class="panel active" id="summary" role="tabpanel">
-      <div class="panel-head">
-        <span class="panel-tag">0.0m — SUMMARY</span>
-        <h2>About</h2>
-      </div>
-
-      <div class="summary-grid">
-        <!-- ▼▼▼ UPDATE: swap initials or replace this div with an <img> tag once you have a photo ▼▼▼ -->
-        <div class="avatar" aria-hidden="true">OS</div>
-
-        <div class="summary-text">
-          <!-- ▼▼▼ UPDATE: write your own 2–3 paragraph summary ▼▼▼ -->
-          <p>
-            I'm a second-year Civil Engineering undergraduate at the University of Asia Pacific,
-            working at the intersection of geotechnical engineering and machine learning.
-            My current research applies FLAC3D numerical modeling alongside ML-based
-            prediction methods to soil behavior problems, with the long-term goal of
-            contributing to a funded graduate research track abroad.
+  <main id="main">
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="hero-eyebrow">Available for opportunities · [YOUR LOCATION]</p>
+          <h1 class="hero-title">
+            <span class="line">[YOUR NAME]</span>
+            <span class="line accent-text">Civil Engineer.</span>
+          </h1>
+          <p class="hero-typing" aria-live="polite"><span id="typingText"></span><span class="cursor" aria-hidden="true"></span></p>
+          <p class="hero-desc">
+            I design and analyze structures and ground systems from first principles —
+            moving fluidly between structural detailing, geotechnical investigation, and
+            the applied research that connects them. [Replace with your own value proposition.]
           </p>
-          <p>
-            Alongside research, I'm building a solid foundation in structural engineering
-            fundamentals — mechanics of materials, fluid mechanics, and numerical methods —
-            treating coursework as the base layer that everything else stands on.
-          </p>
-          <p>
-            I care about disciplined, intentional work: clear deliverables, honest
-            retrospectives, and building things that hold up under scrutiny — whether
-            that's a slope stability model or a study plan.
+
+          <div class="hero-cta">
+            <a href="[RESUME PDF PATH]" class="btn btn-primary" download>Download Resume</a>
+            <a href="#projects" class="btn btn-outline">View Projects</a>
+            <a href="#contact" class="btn btn-outline">Contact Me</a>
+          </div>
+
+          <div class="hero-socials" aria-label="Social profiles">
+            <a href="[YOUR GITHUB URL]" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.3-1.69-1.3-1.69-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.41-1.27.74-1.56-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.43-2.7 5.4-5.27 5.69.42.36.79 1.08.79 2.17v3.22c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+            </a>
+            <a href="[YOUR LINKEDIN URL]" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.11 20.45H3.56V9h3.55v11.45Z"/></svg>
+            </a>
+            <a href="mailto:[YOUR EMAIL]" class="social-icon" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+            </a>
+            <a href="[YOUR TWITTER URL]" class="social-icon" aria-label="Twitter/X" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.4 8.5L23.3 22h-6.8l-5.3-6.9L5 22H1.9l7.9-9.1L1 2h7l4.8 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg>
+            </a>
+            <a href="[YOUR LEETCODE URL]" class="social-icon" aria-label="LeetCode" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 2 6 9.7c-.9.9-.9 2.4 0 3.3l6 6.2c.9.9 2.4.9 3.3 0l3-3-1.6-1.7-2.7 2.8-5.2-5.4 5.2-5.3 2.7 2.7L18.3 8l-3-3c-.9-.9-2.9-1.9-1.8-3Z"/><path d="M9.5 15.5h9v2.3h-9z"/></svg>
+            </a>
+            <a href="[YOUR CODEFORCES URL]" class="social-icon" aria-label="Codeforces" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2" y="10" width="5" height="11" rx="1"/><rect x="9.5" y="5" width="5" height="16" rx="1"/><rect x="17" y="2" width="5" height="19" rx="1"/></svg>
+            </a>
+            <a href="[YOUR HACKERRANK URL]" class="social-icon" aria-label="HackerRank" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1 2 6v12l10 5 10-5V6L12 1Zm4.3 8.4c.2 0 .3.1.3.3v.9h.7c.2 0 .3.1.3.3s-.1.3-.3.3h-.7v.9c0 .2-.1.3-.3.3s-.3-.1-.3-.3v-.9h-.7c-.2 0-.3-.1-.3-.3s.1-.3.3-.3h.7v-.9c0-.2.1-.3.3-.3ZM8 8.5c.2 0 .4.2.4.4v2.5h6.2V8.9c0-.2.2-.4.4-.4s.4.2.4.4v6.2c0 .2-.2.4-.4.4s-.4-.2-.4-.4v-2.7H8.4v2.7c0 .2-.2.4-.4.4s-.4-.2-.4-.4V8.9c0-.2.2-.4.4-.4Z"/></svg>
+            </a>
+            <a href="[YOUR MEDIUM URL]" class="social-icon" aria-label="Medium" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h.6l5.4 8.2L15.7 5h.8a1.5 1.5 0 0 1 1.5 1.5v10.9A1.5 1.5 0 0 1 16.5 19h-.6V9.7l-4.9 7.4-4.9-7.4V19h-.6A1.5 1.5 0 0 1 3 17.4V6.5Z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-portrait-wrap">
+          <img class="hero-portrait" src="[PORTRAIT IMAGE PATH]" alt="Professional portrait of [YOUR NAME]" width="640" height="672" />
+          <p class="hero-portrait-tag">
+            <span>FIG. 01</span>
+            <span>PORTRAIT — SCALE N.T.S.</span>
           </p>
         </div>
       </div>
 
-      <div class="quick-facts">
-        <!-- ▼▼▼ UPDATE: these small stat blocks — add/remove as needed ▼▼▼ -->
-        <div class="fact">
-          <span class="fact-num">2nd</span>
-          <span class="fact-label">Year, Civil Engineering</span>
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <span class="line-anim"></span>
+        <span>SCROLL</span>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section id="about" class="reveal">
+      <div class="container">
+        <div class="sheet-head">
+          <div>
+            <span class="sheet-number">DWG NO. 01 / ABOUT</span>
+            <h2 class="sheet-title">About Me</h2>
+          </div>
+          <div class="sheet-meta">SCALE 1:1<br />REV A</div>
         </div>
-        <div class="fact">
-          <span class="fact-num">FLAC3D</span>
-          <span class="fact-label">Geotechnical modeling research</span>
+
+        <div class="about-grid">
+          <div class="about-bio">
+            <p>
+              I'm [YOUR NAME], a civil engineer who works comfortably across structural
+              design, geotechnical analysis, and applied research — I like problems that
+              don't stay inside one discipline. [Replace with 2–3 sentences on your
+              professional biography.]
+            </p>
+            <p>
+              My mission is to design the built environment responsibly: safe structures,
+              stable ground, and decisions backed by data rather than assumption.
+              [Replace with your mission statement.]
+            </p>
+            <p>
+              Career objective: to grow into a role where structural detailing and
+              geotechnical judgment meet — bridge foundations, retaining systems, and
+              ground-structure interaction problems. [Replace with your career objective.]
+            </p>
+
+            <div class="about-interests" aria-label="Personal interests">
+              <span class="tag-pill">Structural Analysis</span>
+              <span class="tag-pill">Soil Mechanics</span>
+              <span class="tag-pill">Sustainable Materials</span>
+              <span class="tag-pill">Hiking &amp; Field Surveys</span>
+              <span class="tag-pill">Technical Writing</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="about-highlights">
+              <div class="highlight-item"><span class="label">Focus</span><span class="value">Structural + Geotech</span></div>
+              <div class="highlight-item"><span class="label">Based in</span><span class="value">[YOUR LOCATION]</span></div>
+              <div class="highlight-item"><span class="label">Experience</span><span class="value">[X] Years</span></div>
+              <div class="highlight-item"><span class="label">Research</span><span class="value">[X] Publications</span></div>
+            </div>
+
+            <ol class="timeline" style="margin-top: var(--space-8);">
+              <li class="timeline-item">
+                <span class="timeline-date">[YEAR]</span>
+                <h3 class="timeline-title">[Milestone Title]</h3>
+                <p class="timeline-desc">[Short description of this milestone in your journey.]</p>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-date">[YEAR]</span>
+                <h3 class="timeline-title">[Milestone Title]</h3>
+                <p class="timeline-desc">[Short description of this milestone in your journey.]</p>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-date">[YEAR]</span>
+                <h3 class="timeline-title">[Milestone Title]</h3>
+                <p class="timeline-desc">[Short description of this milestone in your journey.]</p>
+              </li>
+            </ol>
+          </div>
         </div>
-        <div class="fact">
-          <span class="fact-num">2</span>
-          <span class="fact-label">Competition posters presented</span>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS ==================== -->
+    <section id="skills" class="reveal">
+      <div class="container">
+        <div class="sheet-head">
+          <div>
+            <span class="sheet-number">DWG NO. 02 / SKILLS</span>
+            <h2 class="sheet-title">Skills &amp; Tools</h2>
+          </div>
+          <div class="sheet-meta">SCALE 1:1<br />REV A</div>
+        </div>
+        <p class="section-intro">A generalist's toolkit spanning structural, geotechnical, and computational work — organized by category so recruiters can scan for exactly what they need.</p>
+
+        <div class="skills-grid">
+          <!-- Category: Programming Languages -->
+          <div class="bracket-card">
+            <h3 class="skill-category-title">Programming Languages</h3>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Python</span><span class="skill-percent">90%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">MATLAB</span><span class="skill-percent">85%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">C++</span><span class="skill-percent">65%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="65"></div></div>
+            </div>
+          </div>
+
+          <!-- Category: Engineering Software -->
+          <div class="bracket-card">
+            <h3 class="skill-category-title">Engineering Software</h3>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">ETABS</span><span class="skill-percent">88%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="88"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">SAP2000</span><span class="skill-percent">82%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="82"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">STAAD.Pro</span><span class="skill-percent">78%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="78"></div></div>
+            </div>
+          </div>
+
+          <!-- Category: CAD Software -->
+          <div class="bracket-card">
+            <h3 class="skill-category-title">CAD Software</h3>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">AutoCAD</span><span class="skill-percent">92%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="92"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Revit</span><span class="skill-percent">75%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="75"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Civil 3D</span><span class="skill-percent">70%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="70"></div></div>
+            </div>
+          </div>
+
+          <!-- Category: Civil Engineering Tools -->
+          <div class="bracket-card">
+            <h3 class="skill-category-title">Civil Engineering Tools</h3>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">PLAXIS 2D/3D</span><span class="skill-percent">80%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">GeoStudio</span><span class="skill-percent">76%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="76"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">HEC-RAS</span><span class="skill-percent">60%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="60"></div></div>
+            </div>
+          </div>
+
+          <!-- Category: Data Analysis -->
+          <div class="bracket-card">
+            <h3 class="skill-category-title">Data Analysis</h3>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Excel / VBA</span><span class="skill-percent">88%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="88"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Pandas / NumPy</span><span class="skill-percent">78%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Statistical Modeling</span><span class="skill-percent">70%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="70"></div></div>
+            </div>
+          </div>
+
+          <!-- Category: AI Tools -->
+          <div class="bracket-card">
+            <h3 class="skill-category-title">AI Tools</h3>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">ML for Structural Health Monitoring</span><span class="skill-percent">65%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="65"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Scikit-learn</span><span class="skill-percent">68%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="68"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Prompt-assisted Research</span><span class="skill-percent">75%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="75"></div></div>
+            </div>
+          </div>
+
+          <!-- Category: Productivity Tools -->
+          <div class="bracket-card">
+            <h3 class="skill-category-title">Productivity Tools</h3>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Git / GitHub</span><span class="skill-percent">80%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">LaTeX</span><span class="skill-percent">85%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-head"><span class="skill-name">Project Scheduling (MS Project)</span><span class="skill-percent">72%</span></div>
+              <div class="progress-track"><div class="progress-fill" data-width="72"></div></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ---------- SKILLS ---------- -->
-    <section class="panel" id="skills" role="tabpanel">
-      <div class="panel-head">
-        <span class="panel-tag">12.5m — SKILLS</span>
-        <h2>Skills</h2>
-      </div>
+    <!-- ==================== PROJECTS ==================== -->
+    <section id="projects" class="reveal">
+      <div class="container">
+        <div class="sheet-head">
+          <div>
+            <span class="sheet-number">DWG NO. 03 / PROJECTS</span>
+            <h2 class="sheet-title">Selected Projects</h2>
+          </div>
+          <div class="sheet-meta">SCALE 1:1<br />REV A</div>
+        </div>
+        <p class="section-intro">Duplicate any card below to add a new project — keep the <code>data-category</code> attribute in sync with the filters.</p>
 
-      <!-- ▼▼▼ UPDATE: edit content in data.js, NOT here. This grid is filled in by script.js ▼▼▼ -->
-      <div class="skills-grid" id="skills-container">
-        <!-- populated from PORTFOLIO_DATA.skills in data.js -->
+        <div class="filter-bar" role="group" aria-label="Filter projects by category">
+          <button class="filter-btn active" data-filter="all" type="button">All</button>
+          <button class="filter-btn" data-filter="structural" type="button">Structural</button>
+          <button class="filter-btn" data-filter="geotechnical" type="button">Geotechnical</button>
+          <button class="filter-btn" data-filter="research" type="button">Research</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Project 1 -->
+          <article class="project-card bracket-card" data-category="structural">
+            <div class="project-media">
+              <img src="[PROJECT 1 IMAGE PATH]" alt="Render of Project One" loading="lazy" width="640" height="400" />
+              <div class="badge-row">
+                <span class="badge badge-featured">Featured</span>
+                <span class="badge badge-status">Completed</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Multi-Story RC Frame Design</h3>
+              <p class="project-desc">[Describe the project scope, your role, and the key structural decisions made.]</p>
+              <div class="project-stack">
+                <span class="stack-chip">ETABS</span>
+                <span class="stack-chip">AutoCAD</span>
+                <span class="stack-chip">IS 456</span>
+              </div>
+              <div class="project-actions">
+                <a href="[PROJECT 1 GITHUB URL]" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="[PROJECT 1 DEMO URL]" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card bracket-card" data-category="geotechnical">
+            <div class="project-media">
+              <img src="[PROJECT 2 IMAGE PATH]" alt="Render of Project Two" loading="lazy" width="640" height="400" />
+              <div class="badge-row">
+                <span class="badge badge-featured">Featured</span>
+                <span class="badge badge-status">Completed</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Slope Stability Assessment</h3>
+              <p class="project-desc">[Describe the project scope, your role, and the key geotechnical findings.]</p>
+              <div class="project-stack">
+                <span class="stack-chip">PLAXIS 2D</span>
+                <span class="stack-chip">GeoStudio</span>
+                <span class="stack-chip">Excel</span>
+              </div>
+              <div class="project-actions">
+                <a href="[PROJECT 2 GITHUB URL]" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="[PROJECT 2 DEMO URL]" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card bracket-card" data-category="research">
+            <div class="project-media">
+              <img src="[PROJECT 3 IMAGE PATH]" alt="Render of Project Three" loading="lazy" width="640" height="400" />
+              <div class="badge-row">
+                <span class="badge badge-featured">Featured</span>
+                <span class="badge badge-status">In Progress</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Machine Learning for Settlement Prediction</h3>
+              <p class="project-desc">[Describe the research question, dataset, and methodology.]</p>
+              <div class="project-stack">
+                <span class="stack-chip">Python</span>
+                <span class="stack-chip">Scikit-learn</span>
+                <span class="stack-chip">Pandas</span>
+              </div>
+              <div class="project-actions">
+                <a href="[PROJECT 3 GITHUB URL]" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="[PROJECT 3 DEMO URL]" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card bracket-card" data-category="structural">
+            <div class="project-media">
+              <img src="[PROJECT 4 IMAGE PATH]" alt="Render of Project Four" loading="lazy" width="640" height="400" />
+              <div class="badge-row">
+                <span class="badge badge-status">Completed</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Steel Truss Bridge Optimization</h3>
+              <p class="project-desc">[Describe the optimization objective, constraints, and results achieved.]</p>
+              <div class="project-stack">
+                <span class="stack-chip">SAP2000</span>
+                <span class="stack-chip">MATLAB</span>
+              </div>
+              <div class="project-actions">
+                <a href="[PROJECT 4 GITHUB URL]" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="[PROJECT 4 DEMO URL]" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="project-card bracket-card" data-category="geotechnical">
+            <div class="project-media">
+              <img src="[PROJECT 5 IMAGE PATH]" alt="Render of Project Five" loading="lazy" width="640" height="400" />
+              <div class="badge-row">
+                <span class="badge badge-status">Completed</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Deep Foundation Design for Coastal Site</h3>
+              <p class="project-desc">[Describe the site conditions, foundation type selected, and design checks performed.]</p>
+              <div class="project-stack">
+                <span class="stack-chip">PLAXIS 3D</span>
+                <span class="stack-chip">AutoCAD</span>
+              </div>
+              <div class="project-actions">
+                <a href="[PROJECT 5 GITHUB URL]" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="[PROJECT 5 DEMO URL]" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="project-card bracket-card" data-category="research">
+            <div class="project-media">
+              <img src="[PROJECT 6 IMAGE PATH]" alt="Render of Project Six" loading="lazy" width="640" height="400" />
+              <div class="badge-row">
+                <span class="badge badge-status">Published</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Sustainable Concrete Mix Design Study</h3>
+              <p class="project-desc">[Describe the research focus, testing program, and findings on sustainable materials.]</p>
+              <div class="project-stack">
+                <span class="stack-chip">Excel</span>
+                <span class="stack-chip">Statistical Analysis</span>
+              </div>
+              <div class="project-actions">
+                <a href="[PROJECT 6 GITHUB URL]" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="[PROJECT 6 DEMO URL]" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- ---------- PROJECTS ---------- -->
-    <section class="panel" id="projects" role="tabpanel">
-      <div class="panel-head">
-        <span class="panel-tag">28.0m — PROJECTS</span>
-        <h2>Projects</h2>
-      </div>
+    <!-- ==================== EXPERIENCE ==================== -->
+    <section id="experience" class="reveal">
+      <div class="container">
+        <div class="sheet-head">
+          <div>
+            <span class="sheet-number">DWG NO. 04 / EXPERIENCE</span>
+            <h2 class="sheet-title">Experience</h2>
+          </div>
+          <div class="sheet-meta">SCALE 1:1<br />REV A</div>
+        </div>
 
-      <!-- ▼▼▼ UPDATE: edit content in data.js, NOT here. This grid is filled in by script.js ▼▼▼ -->
-      <div class="project-grid" id="projects-container">
-        <!-- populated from PORTFOLIO_DATA.projects in data.js -->
+        <div class="tab-list" role="tablist" aria-label="Experience categories">
+          <button class="tab-btn active" data-tab="internships" type="button" role="tab" aria-selected="true">Internships</button>
+          <button class="tab-btn" data-tab="research" type="button" role="tab" aria-selected="false">Research</button>
+          <button class="tab-btn" data-tab="freelance" type="button" role="tab" aria-selected="false">Freelancing</button>
+          <button class="tab-btn" data-tab="leadership" type="button" role="tab" aria-selected="false">Leadership</button>
+          <button class="tab-btn" data-tab="teaching" type="button" role="tab" aria-selected="false">Teaching</button>
+          <button class="tab-btn" data-tab="volunteer" type="button" role="tab" aria-selected="false">Volunteer</button>
+        </div>
+
+        <div class="tab-panel active" data-panel="internships">
+          <ol class="timeline">
+            <li class="timeline-item">
+              <span class="timeline-date">[MONTH YEAR] – [MONTH YEAR]</span>
+              <h3 class="timeline-title">Structural Engineering Intern</h3>
+              <p class="timeline-org">[Company Name] · [Location]</p>
+              <p class="timeline-desc">[Describe your responsibilities and key contributions during this internship.]</p>
+              <div class="timeline-tags"><span class="tag-pill">ETABS</span><span class="tag-pill">AutoCAD</span></div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">[MONTH YEAR] – [MONTH YEAR]</span>
+              <h3 class="timeline-title">Geotechnical Engineering Intern</h3>
+              <p class="timeline-org">[Company Name] · [Location]</p>
+              <p class="timeline-desc">[Describe your responsibilities and key contributions during this internship.]</p>
+              <div class="timeline-tags"><span class="tag-pill">Site Investigation</span><span class="tag-pill">PLAXIS</span></div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="tab-panel" data-panel="research">
+          <ol class="timeline">
+            <li class="timeline-item">
+              <span class="timeline-date">[MONTH YEAR] – Present</span>
+              <h3 class="timeline-title">Undergraduate Research Assistant</h3>
+              <p class="timeline-org">[Lab / University Name]</p>
+              <p class="timeline-desc">[Describe the research topic and your specific contributions.]</p>
+              <div class="timeline-tags"><span class="tag-pill">Python</span><span class="tag-pill">Data Analysis</span></div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="tab-panel" data-panel="freelance">
+          <ol class="timeline">
+            <li class="timeline-item">
+              <span class="timeline-date">[YEAR] – Present</span>
+              <h3 class="timeline-title">Freelance Structural Consultant</h3>
+              <p class="timeline-org">Self-Employed</p>
+              <p class="timeline-desc">[Describe freelance projects: residential design checks, small-scale consulting, etc.]</p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="tab-panel" data-panel="leadership">
+          <ol class="timeline">
+            <li class="timeline-item">
+              <span class="timeline-date">[YEAR] – [YEAR]</span>
+              <h3 class="timeline-title">President, Civil Engineering Society</h3>
+              <p class="timeline-org">[University Name]</p>
+              <p class="timeline-desc">[Describe your leadership role and impact.]</p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="tab-panel" data-panel="teaching">
+          <ol class="timeline">
+            <li class="timeline-item">
+              <span class="timeline-date">[YEAR] – [YEAR]</span>
+              <h3 class="timeline-title">Teaching Assistant, Structural Mechanics</h3>
+              <p class="timeline-org">[University Name]</p>
+              <p class="timeline-desc">[Describe your teaching responsibilities.]</p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="tab-panel" data-panel="volunteer">
+          <ol class="timeline">
+            <li class="timeline-item">
+              <span class="timeline-date">[YEAR]</span>
+              <h3 class="timeline-title">Volunteer Structural Assessor</h3>
+              <p class="timeline-org">[Organization Name]</p>
+              <p class="timeline-desc">[Describe post-disaster assessment or community engineering work.]</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
-    <!-- ---------- EXPERIENCE ---------- -->
-    <section class="panel" id="experience" role="tabpanel">
-      <div class="panel-head">
-        <span class="panel-tag">45.0m — EXPERIENCE</span>
-        <h2>Experience</h2>
-      </div>
+    <!-- ==================== EDUCATION ==================== -->
+    <section id="education" class="reveal">
+      <div class="container">
+        <div class="sheet-head">
+          <div>
+            <span class="sheet-number">DWG NO. 05 / EDUCATION</span>
+            <h2 class="sheet-title">Education</h2>
+          </div>
+          <div class="sheet-meta">SCALE 1:1<br />REV A</div>
+        </div>
 
-      <!-- ▼▼▼ UPDATE: edit content in data.js, NOT here. This list is filled in by script.js ▼▼▼ -->
-      <div class="timeline" id="experience-container">
-        <!-- populated from PORTFOLIO_DATA.experience in data.js -->
+        <ol class="timeline">
+          <li class="timeline-item">
+            <span class="timeline-date">[YEAR] – [EXPECTED YEAR]</span>
+            <h3 class="timeline-title">B.Sc. in Civil Engineering</h3>
+            <p class="timeline-org">[University Name] · [Location]</p>
+            <p class="timeline-desc">Relevant coursework: Structural Analysis, Soil Mechanics, Reinforced Concrete Design, Fluid Mechanics, Foundation Engineering, Engineering Materials.</p>
+            <div class="timeline-tags"><span class="tag-pill">GPA: [X.XX / 4.00]</span><span class="tag-pill">[Honor / Distinction]</span></div>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-date">[YEAR] – [YEAR]</span>
+            <h3 class="timeline-title">Higher Secondary Certificate</h3>
+            <p class="timeline-org">[School Name] · [Location]</p>
+            <p class="timeline-desc">[Add relevant achievements, e.g. major track, notable results.]</p>
+          </li>
+        </ol>
       </div>
     </section>
 
+    <!-- ==================== CERTIFICATIONS ==================== -->
+    <section id="certificates" class="reveal">
+      <div class="container">
+        <div class="sheet-head">
+          <div>
+            <span class="sheet-number">DWG NO. 06 / CERTIFICATES</span>
+            <h2 class="sheet-title">Certifications</h2>
+          </div>
+          <div class="sheet-meta">SCALE 1:1<br />REV A</div>
+        </div>
+
+        <div class="cert-grid">
+          <div class="cert-card bracket-card">
+            <div class="cert-top">
+              <div>
+                <span class="cert-org">Autodesk</span>
+                <h3 class="cert-title">AutoCAD Certified User</h3>
+              </div>
+              <span class="cert-date">[MONTH YEAR]</span>
+            </div>
+            <p class="cert-id">Credential ID: [XXXX-XXXX]</p>
+            <a href="[VERIFICATION LINK]" class="btn btn-outline btn-sm cert-verify" target="_blank" rel="noopener noreferrer">Verify</a>
+          </div>
+
+          <div class="cert-card bracket-card">
+            <div class="cert-top">
+              <div>
+                <span class="cert-org">Coursera / [University]</span>
+                <h3 class="cert-title">Geotechnical Engineering Fundamentals</h3>
+              </div>
+              <span class="cert-date">[MONTH YEAR]</span>
+            </div>
+            <p class="cert-id">Credential ID: [XXXX-XXXX]</p>
+            <a href="[VERIFICATION LINK]" class="btn btn-outline btn-sm cert-verify" target="_blank" rel="noopener noreferrer">Verify</a>
+          </div>
+
+          <div class="cert-card bracket-card">
+            <div class="cert-top">
+              <div>
+                <span class="cert-org">CSI</span>
+                <h3 class="cert-title">ETABS Professional Training</h3>
+              </div>
+              <span class="cert-date">[MONTH YEAR]</span>
+            </div>
+            <p class="cert-id">Credential ID: [XXXX-XXXX]</p>
+            <a href="[VERIFICATION LINK]" class="btn btn-outline btn-sm cert-verify" target="_blank" rel="noopener noreferrer">Verify</a>
+          </div>
+
+          <div class="cert-card bracket-card">
+            <div class="cert-top">
+              <div>
+                <span class="cert-org">[Certifying Body]</span>
+                <h3 class="cert-title">Python for Data Science</h3>
+              </div>
+              <span class="cert-date">[MONTH YEAR]</span>
+            </div>
+            <p class="cert-id">Credential ID: [XXXX-XXXX]</p>
+            <a href="[VERIFICATION LINK]" class="btn btn-outline btn-sm cert-verify" target="_blank" rel="noopener noreferrer">Verify</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ACHIEVEMENTS ==================== -->
+    <section id="achievements" class="reveal">
+      <div class="container">
+        <div class="sheet-head">
+          <div>
+            <span class="sheet-number">DWG NO. 07 / ACHIEVEMENTS</span>
+            <h2 class="sheet-title">Achievements</h2>
+          </div>
+          <div class="sheet-meta">SCALE 1:1<br />REV A</div>
+        </div>
+
+        <div class="achievements-grid">
+          <div class="achievement-card bracket-card">
+            <div class="achievement-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10l-1 8a4 4 0 0 1-8 0L7 4Z"/><path d="M17 5h3a2 2 0 0 1-2 4M7 5H4a2 2 0 0 0 2 4"/></svg></div>
+            <h3 class="achievement-title">1st Place, National Bridge Design Competition</h3>
+            <p class="achievement-org">[Organizing Body]</p>
+            <span class="achievement-date">[YEAR]</span>
+          </div>
+
+          <div class="achievement-card bracket-card">
+            <div class="achievement-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
+            <h3 class="achievement-title">Merit Scholarship</h3>
+            <p class="achievement-org">[University Name]</p>
+            <span class="achievement-date">[YEAR] – [YEAR]</span>
+          </div>
+
+          <div class="achievement-card bracket-card">
+            <div class="achievement-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <h3 class="achievement-title">Best Paper Award, Student Research Symposium</h3>
+            <p class="achievement-org">[Conference / Institution]</p>
+            <span class="achievement-date">[YEAR]</span>
+          </div>
+
+          <div class="achievement-card bracket-card">
+            <div class="achievement-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 2 3 6 6.5 1-4.7 4.5L18 20l-6-3.3L6 20l1.2-6.5L2.5 9l6.5-1 3-6Z"/></svg></div>
+            <h3 class="achievement-title">Finalist, Regional Structural Design Hackathon</h3>
+            <p class="achievement-org">[Organizing Body]</p>
+            <span class="achievement-date">[YEAR]</span>
+          </div>
+
+          <div class="achievement-card bracket-card">
+            <div class="achievement-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div>
+            <h3 class="achievement-title">Published Co-Author, Journal of Geotechnical Studies</h3>
+            <p class="achievement-org">[Journal Name]</p>
+            <span class="achievement-date">[YEAR]</span>
+          </div>
+
+          <div class="achievement-card bracket-card">
+            <div class="achievement-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M9 14 6 22l6-3 6 3-3-8"/></svg></div>
+            <h3 class="achievement-title">Dean's List</h3>
+            <p class="achievement-org">[University Name]</p>
+            <span class="achievement-date">[YEAR] – [YEAR]</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== STATISTICS ==================== -->
+    <section class="stats-section reveal">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" data-count="18">0</span>
+            <p class="stat-label">Projects</p>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="4">0</span>
+            <p class="stat-label">Years Learning</p>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="6">0</span>
+            <p class="stat-label">Certificates</p>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="640">0</span>
+            <p class="stat-label">GitHub Contributions</p>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="22">0</span>
+            <p class="stat-label">Repositories</p>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="15" data-suffix="k">0</span>
+            <p class="stat-label">Lines of Code</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="contact" class="reveal">
+      <div class="container">
+        <div class="sheet-head">
+          <div>
+            <span class="sheet-number">DWG NO. 08 / CONTACT</span>
+            <h2 class="sheet-title">Get In Touch</h2>
+          </div>
+          <div class="sheet-meta">SCALE 1:1<br />REV A</div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p class="section-intro" style="margin-bottom: var(--space-8);">Have a project in mind, a role to discuss, or a question about my work? I read every message.</p>
+
+            <div class="contact-info-item">
+              <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
+              <div><span class="label">Email</span><br /><a href="mailto:[YOUR EMAIL]" class="value">[YOUR EMAIL]</a></div>
+            </div>
+            <div class="contact-info-item">
+              <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg></span>
+              <div><span class="label">Phone</span><br /><a href="tel:[YOUR PHONE]" class="value">[YOUR PHONE]</a></div>
+            </div>
+            <div class="contact-info-item">
+              <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div><span class="label">Location</span><br /><span class="value">[YOUR LOCATION]</span></div>
+            </div>
+          </div>
+
+          <form class="contact-form bracket-card" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-input" type="text" id="name" name="name" autocomplete="name" required aria-describedby="nameError" />
+                <p class="form-error" id="nameError"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-input" type="email" id="email" name="email" autocomplete="email" required aria-describedby="emailError" />
+                <p class="form-error" id="emailError"></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="subject">Subject</label>
+              <input class="form-input" type="text" id="subject" name="subject" required aria-describedby="subjectError" />
+              <p class="form-error" id="subjectError"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" name="message" required aria-describedby="messageError"></textarea>
+              <p class="form-error" id="messageError"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+            <p class="form-status" id="formStatus" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- ============ CONTACT / FOOTER STRIP ============ -->
-  <!-- ▼▼▼ UPDATE: replace href values with your real email, LinkedIn, GitHub, etc. ▼▼▼ -->
-  <footer class="contact-strip">
-    <p class="contact-note">Let's talk research, structural work, or opportunities.</p>
-    <div class="contact-links">
-      <a href="mailto:youremail@example.com" class="contact-link">Email</a>
-      <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/yourusername" class="contact-link" target="_blank" rel="noopener">GitHub</a>
-      <a href="#" class="contact-link" target="_blank" rel="noopener">Resume</a>
-      <!-- ▼ TO ADD A NEW LINK: copy an <a class="contact-link">...</a> line -->
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <h4>[YOUR NAME]</h4>
+        <p style="color: var(--color-muted); font-size: var(--text-sm); max-width: 28ch;">Civil engineer working across structural, geotechnical, and research disciplines.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Social</h4>
+        <div class="footer-links">
+          <a href="[YOUR GITHUB URL]" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="[YOUR LINKEDIN URL]" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="[YOUR MEDIUM URL]" target="_blank" rel="noopener noreferrer">Medium</a>
+        </div>
+      </div>
     </div>
-    <p class="contact-copyright">© <span id="year"></span> Omayer Siddique</p>
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> [YOUR NAME]. All rights reserved.</span>
+      <span>Built with HTML, CSS &amp; JavaScript.</span>
+    </div>
   </footer>
 
-</div>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
 
-<script src="data.js"></script>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
