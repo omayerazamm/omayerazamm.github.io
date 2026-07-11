@@ -1,12 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omayer Siddique — Portfolio</title>
+<!-- ▼▼▼ UPDATE: change the <title> above to your own name ▼▼▼ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello, World! Welcome to my portfolio.</h1>
-    <p>Built and hosted entirely on GitHub Pages.</p>
+
+<!-- Faint background grid, like graph/blueprint paper -->
+<div class="bg-grid" aria-hidden="true"></div>
+
+<div class="sheet">
+
+  <!-- ============ HEADER / TITLE BLOCK ============ -->
+  <!-- ▼▼▼ UPDATE: name, role/tagline, and the meta fields (location, focus, status) ▼▼▼ -->
+  <header class="title-block">
+    <div class="tb-left">
+      <p class="tb-eyebrow">PORTFOLIO — SHEET SET</p>
+      <h1 class="tb-name">Omayer Siddique</h1>
+      <p class="tb-role">Civil Engineering Student · Geotechnical &amp; ML Research</p>
+    </div>
+    <div class="tb-right">
+      <div class="tb-field">
+        <span class="tb-label">LOCATION</span>
+        <span class="tb-value">Dhaka, Bangladesh</span>
+      </div>
+      <div class="tb-field">
+        <span class="tb-label">FOCUS</span>
+        <span class="tb-value">FLAC3D · Machine Learning</span>
+      </div>
+      <div class="tb-field">
+        <span class="tb-label">STATUS</span>
+        <span class="tb-value">Open to research opportunities</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ NAV / SHEET INDEX TABS ============ -->
+  <nav class="sheet-index" role="tablist" aria-label="Portfolio sections">
+    <button class="tab-btn active" data-tab="summary" role="tab" aria-selected="true">
+      <span class="tab-num">01</span><span class="tab-label">Summary</span>
+    </button>
+    <button class="tab-btn" data-tab="skills" role="tab" aria-selected="false">
+      <span class="tab-num">02</span><span class="tab-label">Skills</span>
+    </button>
+    <button class="tab-btn" data-tab="projects" role="tab" aria-selected="false">
+      <span class="tab-num">03</span><span class="tab-label">Projects</span>
+    </button>
+    <button class="tab-btn" data-tab="experience" role="tab" aria-selected="false">
+      <span class="tab-num">04</span><span class="tab-label">Experience</span>
+    </button>
+    <!--
+      ▼ TO ADD A NEW TAB LATER:
+      1. Copy a <button> above, give it a new data-tab="yourtab" value.
+      2. Copy a <section class="panel"> below, give it id="yourtab".
+      3. That's it — script.js handles the switching automatically.
+    -->
+  </nav>
+
+  <!-- ============ CONTENT PANEL ============ -->
+  <main class="panel-frame">
+    <!-- corner registration marks — the signature visual detail -->
+    <span class="reg-mark tl" aria-hidden="true"></span>
+    <span class="reg-mark tr" aria-hidden="true"></span>
+    <span class="reg-mark bl" aria-hidden="true"></span>
+    <span class="reg-mark br" aria-hidden="true"></span>
+
+    <!-- ---------- 01 SUMMARY ---------- -->
+    <section class="panel active" id="summary" role="tabpanel">
+      <div class="panel-head">
+        <span class="panel-tag">01 / SUMMARY</span>
+        <h2>About</h2>
+      </div>
+
+      <div class="summary-grid">
+        <!-- ▼▼▼ UPDATE: swap initials or replace this div with an <img> tag once you have a photo ▼▼▼ -->
+        <div class="avatar" aria-hidden="true">OS</div>
+
+        <div class="summary-text">
+          <!-- ▼▼▼ UPDATE: write your own 2–3 paragraph summary ▼▼▼ -->
+          <p>
+            I'm a second-year Civil Engineering undergraduate at the University of Asia Pacific,
+            working at the intersection of geotechnical engineering and machine learning.
+            My current research applies FLAC3D numerical modeling alongside ML-based
+            prediction methods to soil behavior problems, with the long-term goal of
+            contributing to a funded graduate research track abroad.
+          </p>
+          <p>
+            Alongside research, I'm building a solid foundation in structural engineering
+            fundamentals — mechanics of materials, fluid mechanics, and numerical methods —
+            treating coursework as the base layer that everything else stands on.
+          </p>
+          <p>
+            I care about disciplined, intentional work: clear deliverables, honest
+            retrospectives, and building things that hold up under scrutiny — whether
+            that's a slope stability model or a study plan.
+          </p>
+        </div>
+      </div>
+
+      <div class="quick-facts">
+        <!-- ▼▼▼ UPDATE: these small stat blocks — add/remove as needed ▼▼▼ -->
+        <div class="fact">
+          <span class="fact-num">2nd</span>
+          <span class="fact-label">Year, Civil Engineering</span>
+        </div>
+        <div class="fact">
+          <span class="fact-num">FLAC3D</span>
+          <span class="fact-label">Geotechnical modeling research</span>
+        </div>
+        <div class="fact">
+          <span class="fact-num">2</span>
+          <span class="fact-label">Competition posters presented</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 02 SKILLS ---------- -->
+    <section class="panel" id="skills" role="tabpanel">
+      <div class="panel-head">
+        <span class="panel-tag">02 / SKILLS</span>
+        <h2>Skills</h2>
+      </div>
+
+      <!-- ▼▼▼ UPDATE: edit categories, skill names, and proficiency bars (0–100) ▼▼▼ -->
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <h3>Modeling &amp; Simulation</h3>
+          <ul class="skill-list">
+            <li><span>FLAC3D</span><div class="bar"><div class="bar-fill" style="width:65%"></div></div></li>
+            <li><span>AutoCAD</span><div class="bar"><div class="bar-fill" style="width:55%"></div></div></li>
+            <li><span>Numerical Methods</span><div class="bar"><div class="bar-fill" style="width:70%"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Programming &amp; ML</h3>
+          <ul class="skill-list">
+            <li><span>Python</span><div class="bar"><div class="bar-fill" style="width:60%"></div></div></li>
+            <li><span>Random Forest / SVR / ANN</span><div class="bar"><div class="bar-fill" style="width:50%"></div></div></li>
+            <li><span>Data Analysis</span><div class="bar"><div class="bar-fill" style="width:55%"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Core Engineering</h3>
+          <ul class="skill-list">
+            <li><span>Mechanics of Materials</span><div class="bar"><div class="bar-fill" style="width:70%"></div></div></li>
+            <li><span>Fluid Mechanics</span><div class="bar"><div class="bar-fill" style="width:65%"></div></div></li>
+            <li><span>Geotechnical Engineering</span><div class="bar"><div class="bar-fill" style="width:60%"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Other</h3>
+          <ul class="skill-list">
+            <li><span>Technical Writing</span><div class="bar"><div class="bar-fill" style="width:75%"></div></div></li>
+            <li><span>Research Presentation</span><div class="bar"><div class="bar-fill" style="width:70%"></div></div></li>
+            <li><span>Project Planning</span><div class="bar"><div class="bar-fill" style="width:65%"></div></div></li>
+          </ul>
+        </div>
+
+        <!--
+          ▼ TO ADD A NEW SKILL GROUP: copy a whole <div class="skill-group">...</div> block.
+          ▼ TO ADD A NEW SKILL: copy an <li>...</li> line and edit the name + bar width%.
+        -->
+      </div>
+    </section>
+
+    <!-- ---------- 03 PROJECTS ---------- -->
+    <section class="panel" id="projects" role="tabpanel">
+      <div class="panel-head">
+        <span class="panel-tag">03 / PROJECTS</span>
+        <h2>Projects</h2>
+      </div>
+
+      <!-- ▼▼▼ UPDATE: replace each card's content, tags, and links with your real projects ▼▼▼ -->
+      <div class="project-grid">
+
+        <article class="project-card">
+          <div class="project-top">
+            <span class="project-code">PRJ.01</span>
+            <span class="project-status">Ongoing</span>
+          </div>
+          <h3>ML-Based Soil Parameter Prediction</h3>
+          <p>
+            National dataset initiative proposal comparing Random Forest, XGBoost,
+            and Gaussian Process Regression for predicting geotechnical soil
+            parameters, benchmarked against international database models.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Geotechnical</span>
+            <span class="tag">Dataset Design</span>
+          </div>
+          <a class="project-link" href="#">View details →</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <span class="project-code">PRJ.02</span>
+            <span class="project-status">Ongoing</span>
+          </div>
+          <h3>Centralized Geotechnical–Environmental Data Framework</h3>
+          <p>
+            A cost-phased roadmap for a national geotechnical database, presented
+            with the Environment and Disaster Management Club, University of
+            Asia Pacific.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Data Systems</span>
+            <span class="tag">Environmental</span>
+            <span class="tag">Policy Roadmap</span>
+          </div>
+          <a class="project-link" href="#">View details →</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <span class="project-code">PRJ.03</span>
+            <span class="project-status">In Progress</span>
+          </div>
+          <h3>FLAC3D Geotechnical Modeling Research</h3>
+          <p>
+            Numerical modeling research under faculty collaboration, combining
+            FLAC3D simulation output with machine learning methods.
+          </p>
+          <div class="tag-row">
+            <span class="tag">FLAC3D</span>
+            <span class="tag">Research</span>
+            <span class="tag">Python</span>
+          </div>
+          <a class="project-link" href="#">View details →</a>
+        </article>
+
+        <!-- ▼ TO ADD A NEW PROJECT: copy one whole <article class="project-card">...</article> block -->
+
+      </div>
+    </section>
+
+    <!-- ---------- 04 EXPERIENCE ---------- -->
+    <section class="panel" id="experience" role="tabpanel">
+      <div class="panel-head">
+        <span class="panel-tag">04 / EXPERIENCE</span>
+        <h2>Experience</h2>
+      </div>
+
+      <!-- ▼▼▼ UPDATE: replace with your real roles, dates, and descriptions ▼▼▼ -->
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2025 — Present</span>
+            <h3>Undergraduate Researcher — Geotechnical Modeling</h3>
+            <p class="timeline-org">University of Asia Pacific, with Mashrur Hasan</p>
+            <p>
+              Researching FLAC3D-based geotechnical modeling combined with machine
+              learning methods, working toward a defined 6-month research deliverable
+              and a funded graduate scholarship application.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2025</span>
+            <h3>Peer Instructor — ML Applications in Geotechnical Engineering</h3>
+            <p class="timeline-org">University of Asia Pacific</p>
+            <p>
+              Designed and delivered a 50-minute lesson covering Random Forest, ANN,
+              and SVR methods with real case studies and an interactive teaching aid.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2023 — Present</span>
+            <h3>B.Sc. in Civil Engineering</h3>
+            <p class="timeline-org">University of Asia Pacific</p>
+            <p>
+              Coursework includes Mechanics of Materials, Fluid Mechanics, and
+              Numerical Methods, alongside independent research work.
+            </p>
+          </div>
+        </div>
+
+        <!-- ▼ TO ADD A NEW ENTRY: copy one whole <div class="timeline-item">...</div> block -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ CONTACT / FOOTER STRIP ============ -->
+  <!-- ▼▼▼ UPDATE: replace href values with your real email, LinkedIn, GitHub, etc. ▼▼▼ -->
+  <footer class="contact-strip">
+    <p class="contact-note">Let's talk research, structural work, or opportunities.</p>
+    <div class="contact-links">
+      <a href="mailto:youremail@example.com" class="contact-link">Email</a>
+      <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/yourusername" class="contact-link" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" class="contact-link" target="_blank" rel="noopener">Resume</a>
+      <!-- ▼ TO ADD A NEW LINK: copy an <a class="contact-link">...</a> line -->
+    </div>
+    <p class="contact-copyright">© <span id="year"></span> Omayer Siddique</p>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
